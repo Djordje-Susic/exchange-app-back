@@ -3,6 +3,7 @@
 use App\Http\Controllers\ExchangeQuoteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FetchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,5 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::resource('quotes', ExchangeQuoteController::class, ['only' => ['index']]);
+
+Route::name('fetch')->post('fetch', [FetchController::class, 'fetch']);

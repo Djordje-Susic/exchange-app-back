@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\FetchCurrencylayerQuotesService;
+use App\Services\FetchMockExternalQuotesService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->singleton(FetchMockExternalQuotesService::class, function($app){
+            return new FetchMockExternalQuotesService();
+        });
+
+        $this->app->singleton(FetchCurrencylayerQuotesService::class, function($app){
+            return new FetchCurrencylayerQuotesService();
+        });
+
+        $this->app->bind(
+            'App\Contracts\FetchExternalQuotesContract',
+            FetchMockExternalQuotesService::class
+            // FetchCurrencylayerQuotesService::class
+        );
     }
 }
