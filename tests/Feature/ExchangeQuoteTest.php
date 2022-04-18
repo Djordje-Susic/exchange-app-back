@@ -67,8 +67,8 @@ class ExchangeQuoteTest extends TestCase
                         'id',
                         'key',
                         'currency_code',
-                        'exchange_rate',
-                        'surcharge_percentage',
+                        // 'exchange_rate',
+                        // 'surcharge_percentage',
                         'discount_percentage'
                     ]
                 ]
