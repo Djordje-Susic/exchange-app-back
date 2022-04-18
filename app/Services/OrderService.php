@@ -13,7 +13,7 @@ class OrderService {
      * @param ExchangeQuote $exchangeQuote
      * @param float $amount
      *
-     * @return App\Order
+     * @return \App\Models\Order
      */
     public static function store(ExchangeQuote $exchangeQuote, float $amount): Order {
         $order = new Order();
