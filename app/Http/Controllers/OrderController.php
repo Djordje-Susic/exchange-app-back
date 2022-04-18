@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OrderCreated;
 use App\Models\ExchangeQuote;
 use App\Models\Order;
 use App\Services\OrderService;
@@ -44,6 +45,8 @@ class OrderController extends Controller
         }
 
         $order = OrderService::store($exchangeQuote, $data['amount']);
+
+        event(new OrderCreated($order));
 
         return $this->successResponse($order);
     }

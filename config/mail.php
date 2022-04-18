@@ -114,4 +114,6 @@ return [
         ],
     ],
 
+    'order_report_address' => env('MAIL_ORDER_REPORT_ADDRESS', 'asdfg@qwerty.com'),
+
 ];
