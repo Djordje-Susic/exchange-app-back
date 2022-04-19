@@ -46,7 +46,7 @@ class OrderController extends Controller
 
         $order = OrderService::store($exchangeQuote, $data['amount']);
 
-        event(new OrderCreated($order));
+        event(new OrderCreated($order, $exchangeQuote->send_email));
 
         return $this->successResponse($order);
     }

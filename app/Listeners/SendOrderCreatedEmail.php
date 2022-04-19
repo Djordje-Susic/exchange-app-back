@@ -21,9 +21,11 @@ class SendOrderCreatedEmail implements ShouldQueue
      */
     public function handle(OrderCreated $event)
     {
-        SendEmail::dispatch(
-            new OrderCreatedReport($event->order),
-            config('mail.order_report_address')
-        );
+        if($event->sendEmail){
+            SendEmail::dispatch(
+                new OrderCreatedReport($event->order),
+                config('mail.order_report_address')
+            );
+        }
     }
 }
