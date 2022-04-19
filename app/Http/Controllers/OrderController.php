@@ -40,7 +40,7 @@ class OrderController extends Controller
 
         $exchangeQuote = ExchangeQuote::where('key', $data['key'])->firstOrFail();
 
-        if(strval($exchangeQuote->quote) !== $data['quote']) {
+        if(strval($exchangeQuote->quote) !== strval($data['quote'])) {
             throw ValidationException::withMessages(['quote' => 'quote mismatch']);
         }
 
