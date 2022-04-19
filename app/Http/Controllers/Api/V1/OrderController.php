@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Events\OrderCreated;
+use App\Http\Controllers\Controller;
 use App\Models\ExchangeQuote;
 use App\Models\Order;
 use App\Services\OrderService;

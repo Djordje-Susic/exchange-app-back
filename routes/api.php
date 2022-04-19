@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\ExchangeQuoteController;
+use App\Http\Controllers\Api\V1\ExchangeQuoteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FetchController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Api\V1\FetchController;
+use App\Http\Controllers\Api\V1\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +21,13 @@ use App\Http\Controllers\OrderController;
 //     return $request->user();
 // });
 
+Route::prefix('v1')
+    ->group(function(){
+        Route::resource('quotes', ExchangeQuoteController::class, ['only' => ['index']]);
 
-Route::resource('quotes', ExchangeQuoteController::class, ['only' => ['index']]);
+        Route::name('fetch')->post('fetch', [FetchController::class, 'fetch']);
 
-Route::name('fetch')->post('fetch', [FetchController::class, 'fetch']);
+        Route::resource('orders', OrderController::class, ['only' => ['index', 'store']]);
+    });
 
-Route::resource('orders', OrderController::class, ['only' => ['index', 'store']]);
+
