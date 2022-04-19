@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('currency_code', 3);
+            $table->string('quote_currency_code', 3);
             $table->double('exchange_rate');
             $table->double('surcharge_percentage');
             $table->double('surcharge_amount');

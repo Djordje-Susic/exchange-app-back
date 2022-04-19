@@ -18,8 +18,8 @@ class OrderService {
     public static function store(ExchangeQuote $exchangeQuote, float $amount): Order {
         $order = new Order();
 
-        // currency_code
-        $order->currency_code = $exchangeQuote->currency_code;
+        // quote_currency_code
+        $order->quote_currency_code = $exchangeQuote->quote_currency_code;
         // exchange_rate
         $order->exchange_rate = $exchangeQuote->exchange_rate;
         // surcharge_percentage

@@ -16,13 +16,16 @@ return new class extends Migration
         Schema::create('exchange_quotes', function (Blueprint $table) {
             $table->id();
             $table->string('key', 6)->unique();
-            $table->string('currency_code', 3);
+            $table->string('base_currency_code', 3);
+            $table->string('quote_currency_code', 3);
             $table->double('exchange_rate');
             $table->double('surcharge_percentage');
             $table->integer('discount_percentage')->default(0);
             $table->boolean('send_email')->default(0);
-
             $table->timestamps();
+
+            $table->foreign('base_currency_code')->references('code')->on('currencies');
+            $table->foreign('quote_currency_code')->references('code')->on('currencies');
         });
     }
 

@@ -18,20 +18,23 @@ class ExchangeQuoteSeeder extends Seeder
         ExchangeQuote::factory()->createMany([
             [
                 'key' => 'USDJPY',
-                'currency_code' => 'JPY',
+                'base_currency_code' => 'USD',
+                'quote_currency_code' => 'JPY',
                 'exchange_rate' => 107.17,
                 'surcharge_percentage' => 7.5,
             ],
             [
                 'key' => 'USDGBP',
-                'currency_code' => 'GBP',
+                'base_currency_code' => 'USD',
+                'quote_currency_code' => 'GBP',
                 'exchange_rate' => 0.711178,
                 'surcharge_percentage' => 5,
                 'send_email' => true,
             ],
             [
                 'key' => 'USDEUR',
-                'currency_code' => 'EUR',
+                'base_currency_code' => 'USD',
+                'quote_currency_code' => 'EUR',
                 'exchange_rate' => 0.884872,
                 'surcharge_percentage' => 5,
                 'discount_percentage' => 2,

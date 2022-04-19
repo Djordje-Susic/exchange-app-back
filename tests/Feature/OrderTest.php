@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Currency;
 use App\Models\ExchangeQuote;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -18,9 +19,25 @@ class OrderTest extends TestCase
      */
     public function testShouldStoreValidOrder()
     {
+        Currency::factory()->createMany([
+            [
+                'code' => 'USD',
+            ],
+            [
+                'code' => 'JPY',
+            ],
+            [
+                'code' => 'GBP',
+            ],
+            [
+                'code' => 'EUR',
+            ],
+        ]);
+
         $exchangeQuote = ExchangeQuote::factory()->create([
             'key' => 'USDJPY',
-            'currency_code' => 'JPY',
+            'base_currency_code' => 'USD',
+            'quote_currency_code' => 'JPY',
             'exchange_rate' => 107.17,
             'surcharge_percentage' => 7.5,
             'discount_percentage' => 2
@@ -42,7 +59,7 @@ class OrderTest extends TestCase
                 'status',
                 'data' => [
                     'id',
-                    'currency_code',
+                    'quote_currency_code',
                     'exchange_rate',
                     'surcharge_percentage',
                     'discount_percentage',
@@ -57,7 +74,7 @@ class OrderTest extends TestCase
 
         $orderData = $response->json()['data'];
 
-        $this->assertEquals('JPY', $orderData['currency_code']);
+        $this->assertEquals('JPY', $orderData['quote_currency_code']);
         $this->assertEquals('107.17', $orderData['exchange_rate']);
         $this->assertEquals('7.5', $orderData['surcharge_percentage']);
         $this->assertEquals('2', $orderData['discount_percentage']);

@@ -17,10 +17,7 @@ class ExchangeQuoteFactory extends Factory
      */
     public function definition()
     {
-        $currency_code = $this->faker->unique()->currencyCode();
         return [
-            'key' => 'USD'.strtoupper($currency_code),
-            'currency_code' =>  $currency_code,
             'exchange_rate' => $this->faker->numberBetween(10, 500)/100,
             'surcharge_percentage' => 3,
             'discount_percentage' => 0,
