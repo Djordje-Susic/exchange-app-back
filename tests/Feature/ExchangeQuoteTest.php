@@ -45,12 +45,6 @@ class ExchangeQuoteTest extends TestCase
 
     public function testQuoteList()
     {
-        ExchangeQuote::factory()->create([
-            'id' => 1,
-            'key' => 'USDJPY',
-            'currency_code' => 'JPY',
-        ]);
-
         ExchangeQuote::factory(30)->create();
 
         $response = $this->get('/api/quotes');
@@ -74,7 +68,6 @@ class ExchangeQuoteTest extends TestCase
                 ]
             ]);
 
-        $this->assertEquals('USDJPY', $response->json()['data'][0]['key']);
-        $this->assertCount(31, $response->json()['data']);
+        $this->assertCount(30, $response->json()['data']);
     }
 }
