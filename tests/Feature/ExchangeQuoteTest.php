@@ -52,7 +52,7 @@ class ExchangeQuoteTest extends TestCase
 
     public function testQuoteListRouteWorks()
     {
-        $this->get('/api/quotes')
+        $this->get('/api/v1/quotes')
             ->assertOk()
             ->assertJson([
                 'status' => 'success',
@@ -71,7 +71,7 @@ class ExchangeQuoteTest extends TestCase
 
     public function testQuoteList()
     {
-        $response = $this->get('/api/quotes');
+        $response = $this->get('/api/v1/quotes');
         $response
             ->assertOk()
             ->assertJson([

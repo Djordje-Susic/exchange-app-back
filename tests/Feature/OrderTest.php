@@ -43,7 +43,7 @@ class OrderTest extends TestCase
             'discount_percentage' => 2
         ]);
 
-        $response = $this->post('/api/orders', [
+        $response = $this->post('/api/v1/orders', [
             'key' => 'USDJPY',
             'amount' => 3,
             'quote' => $exchangeQuote->quote
@@ -59,6 +59,7 @@ class OrderTest extends TestCase
                 'status',
                 'data' => [
                     'id',
+                    'base_currency_code',
                     'quote_currency_code',
                     'exchange_rate',
                     'surcharge_percentage',
@@ -74,6 +75,7 @@ class OrderTest extends TestCase
 
         $orderData = $response->json()['data'];
 
+        $this->assertEquals('USD', $orderData['base_currency_code']);
         $this->assertEquals('JPY', $orderData['quote_currency_code']);
         $this->assertEquals('107.17', $orderData['exchange_rate']);
         $this->assertEquals('7.5', $orderData['surcharge_percentage']);
