@@ -1,3 +1,40 @@
+## Settings
+
+In `.env` file set required variables
+
+```
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=exchange_app
+DB_USERNAME=sail
+DB_PASSWORD=password
+
+REDIS_HOST=redis
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_MAILER=smtp
+MAIL_HOST=
+MAIL_PORT=
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="admin@exchange.com"
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+And add required custom variables
+
+```
+CURRENCYLAYER_ACCESS_KEY=
+MAIL_ORDER_REPORT_ADDRESS=
+```
+First one is API key for https://currencylayer.com/  
+Second one is email used to receive order reports for specified currencies
+
+Example is in `.env.example`
+
 ## Installation
 
 ### Option 1: Docker
@@ -19,19 +56,6 @@ Prerequisites: PHP8.1, Composer, XAMPP
 1. Place project in `htdocs` folder
 2. Open console window in root project folder and run `composer install`
 3. Run `php artisan migrate:refresh --seed` to create/seed database
-
-## Settings
-
-In `.env` file add required variables
-
-```
-CURRENCYLAYER_ACCESS_KEY=
-MAIL_ORDER_REPORT_ADDRESS=
-```
-First one is API key for https://currencylayer.com/  
-Second one is email used to receive order reports for specified currencies
-
-Example is in `.env.example`
 
 ## Endpoints
 
