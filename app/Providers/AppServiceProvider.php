@@ -35,8 +35,8 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(
             'App\Contracts\FetchExternalQuotesContract',
-            FetchMockExternalQuotesService::class
-            // FetchCurrencylayerQuotesService::class
+            // FetchMockExternalQuotesService::class
+            FetchCurrencylayerQuotesService::class
         );
     }
 }
